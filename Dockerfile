@@ -23,6 +23,8 @@ WORKDIR /src
 
 COPY --from=build-env /publish /src
 
+EXPOSE 5000
+
 CMD ["./KanbanCord.Bot"]
 
-HEALTHCHECK CMD wget --quiet --tries=1 --spider http://localhost:5000/health || exit 1
+HEALTHCHECK CMD wget --quiet --tries=1 --spider http://localhost:${PORT:-5000}/health || exit 1
